@@ -1,5 +1,5 @@
 # Snakemake workflow for using the Microstructure Diffusion Toolbox (MDT)
-This is a snakemake workflow for using the [Microstructure Diffusion Toolbox (MDT)](https://mdt-toolbox.readthedocs.io/en/latest_release/index.html). It was designed to run microstrcuture modelling on unfolded hippocampal diffusion data (more about unfolding the hippocampus by @jordandekraker at https://github.com/jordandekraker/HippUnfolding). This workflow makes use of a [bids app wrapper](https://github.com/khanlab/mdt-bids) for running MDT .
+This is a snakemake workflow for using the [Microstructure Diffusion Toolbox (MDT)](https://mdt-toolbox.readthedocs.io/en/latest_release/index.html). This workflow was designed to run microstrcuture modelling on left and right hemisphere unfolded hippocampal diffusion data (more about unfolding the hippocampus by @jordandekraker at https://github.com/jordandekraker/HippUnfolding). This workflow makes use of a [bids app wrapper](https://github.com/khanlab/mdt-bids) for running MDT .
 
 ## Authors
 * Bradley Karat (@Bradley-Karat)
