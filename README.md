@@ -50,7 +50,7 @@ snakemake -np results/{subject}_{hemi}/NODDI
 The workflow can be executed by using the `cc-slurm` profile or by executing an interactive job. 
  
  
-* The **cc-slurm** profile sets up default options for running on compute canada. More information on cc-slurm can be found from the Khan lab [here](https://github.com/khanlab/cc-slurm). 
+1. The **cc-slurm** profile sets up default options for running on compute canada. More information on cc-slurm can be found from the Khan lab [here](https://github.com/khanlab/cc-slurm). 
  
 Install `cookiecutter` using:
 ```python
@@ -67,7 +67,7 @@ Snakemake can then be ran with:
   snakemake --profile cc-slurm ...
 ```
 
-⋅⋅1. Submitting an **interactive** job by executing the workflow locally:
+2. Submitting an **interactive** job by executing the workflow locally:
 ```python
 salloc --time=8:00:00 --gres=gpu:t4:1 --cpus-per-task=8 --ntasks=1 --mem=32000 --account=CC_acct srun snakemake --use-singularity --cores 8 --resources gpus=1 mem_mb=32000 
 ```
