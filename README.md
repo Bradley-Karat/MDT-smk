@@ -67,7 +67,7 @@ Snakemake can then be ran with:
   snakemake --profile cc-slurm ...
 ```
 
-* Submitting an **interactive** job by executing the workflow locally:
+⋅⋅1. Submitting an **interactive** job by executing the workflow locally:
 ```python
 salloc --time=8:00:00 --gres=gpu:t4:1 --cpus-per-task=8 --ntasks=1 --mem=32000 --account=CC_acct srun snakemake --use-singularity --cores 8 --resources gpus=1 mem_mb=32000 
 ```
