@@ -42,7 +42,7 @@ Test your configuration by performing a dry-run via
 
 Note that you may not wish to run all the rules in the snakefile. For example, you may already have a mask created and do not wish to create another one through MDT. In that case, specify the rule you would like to run. An example for only running the model fitting is:
 ```python
-snakemake -np results/{subject}_{hemi}/NODDI
+ snakemake -np results/{subject}_{hemi}/NODDI
 ```
 
 
@@ -69,7 +69,7 @@ Snakemake can then be ran with:
 
 2. Submitting an **interactive** job by executing the workflow locally:
 ```python
-salloc --time=8:00:00 --gres=gpu:t4:1 --cpus-per-task=8 --ntasks=1 --mem=32000 --account=CC_acct srun snakemake --use-singularity --cores 8 --resources gpus=1 mem_mb=32000 
+ salloc --time=8:00:00 --gres=gpu:t4:1 --cpus-per-task=8 --ntasks=1 --mem=32000 --account=CC_acct srun snakemake --use-      singularity --cores 8 --resources gpus=1 mem_mb=32000 
 ```
 
 #### 5. **Viewing Results**
