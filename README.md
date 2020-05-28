@@ -8,7 +8,7 @@ Usage
 -----
 
 #### 1. **Install Snakemake**
-..1.Install snakemake using [pip](https://snakemake.readthedocs.io/en/stable/getting_started/installation.html#installation-via-pip):
+* Install snakemake using [pip](https://snakemake.readthedocs.io/en/stable/getting_started/installation.html#installation-via-pip):
 
   ```python
    pip install snakemake
@@ -16,7 +16,7 @@ Usage
 
 (note snakemake has non-python dependencies, such that the pip based installation has a limited functionality if those dependencies are not manually installed in addition)
 
-..2.Install snakemake using [Conda](https://conda.io/projects/conda/en/latest/user-guide/install/index.html):
+* Install snakemake using [Conda](https://conda.io/projects/conda/en/latest/user-guide/install/index.html):
 
 ```python
  conda install -c conda-forge mamba    
@@ -50,7 +50,7 @@ snakemake -np results/{subject}_{hemi}/NODDI
 The workflow can be executed by using the `cc-slurm` profile or by executing an interactive job. 
  
  
-..1. The **cc-slurm** profile sets up default options for running on compute canada. More information can be found from the Khan lab [here](https://github.com/khanlab/cc-slurm). 
+* The **cc-slurm** profile sets up default options for running on compute canada. More information can be found from the Khan lab [here](https://github.com/khanlab/cc-slurm). 
  
 Install `cookiecutter` using:
 ```python
@@ -67,7 +67,7 @@ Snakemake can then be ran with:
   snakemake --profile cc-slurm ...
 ```
 
-..2. Submitting an **interactive** job by executing the workflow locally:
+* Submitting an **interactive** job by executing the workflow locally:
 ```python
 salloc --time=8:00:00 --gres=gpu:t4:1 --cpus-per-task=8 --ntasks=1 --mem=32000 --account=CC_acct srun snakemake --use-singularity --cores 8 --resources gpus=1 mem_mb=32000 
 ```
