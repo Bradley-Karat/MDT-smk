@@ -50,7 +50,7 @@ snakemake -np results/{subject}_{hemi}/NODDI
 The workflow can be executed by using the `cc-slurm` profile or by executing an interactive job. 
  
  
-* The **cc-slurm** profile sets up default options for running on compute canada. More information can be found from the Khan lab [here](https://github.com/khanlab/cc-slurm). 
+* The **cc-slurm** profile sets up default options for running on compute canada. More information on cc-slurm can be found from the Khan lab [here](https://github.com/khanlab/cc-slurm). 
  
 Install `cookiecutter` using:
 ```python
