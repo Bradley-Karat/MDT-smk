@@ -10,7 +10,7 @@ Usage
 #### 1. **Install Snakemake**
 * Install snakemake using [pip](https://snakemake.readthedocs.io/en/stable/getting_started/installation.html#installation-via-pip):
 
-  ```python
+ ```python
    pip install snakemake
   ```
 
