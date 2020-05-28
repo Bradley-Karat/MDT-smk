@@ -7,18 +7,25 @@ This is a snakemake workflow for using the Microstructure Diffusion Toolbox (MDT
 Usage
 -----
 
-#### **Install Snakemake**
+#### 1. **Install Snakemake**
 Install snakemake using [pip](https://snakemake.readthedocs.io/en/stable/getting_started/installation.html#installation-via-pip):
 
-  ```                                                                                           pip install snakemake```
+  ```python
+   pip install snakemake
+  ```
 
 (note snakemake has non-python dependencies, such that the pip based installation has a limited functionality if those dependencies are not manually installed in addition)
 
 Install snakemake using [Conda](https://conda.io/projects/conda/en/latest/user-guide/install/index.html):
 
-   ```conda install -c conda-forge mamba                                                                                          ```
-
-  ```conda activate snakemake                                                                                                    ```
+```python
+ conda install -c conda-forge mamba    
+  ```
+  
+   
+```python
+ conda activate snakemake  
+  ```
 
 For more details about installation [read the snakemake documentation](https://snakemake.readthedocs.io/en/stable/).
 
