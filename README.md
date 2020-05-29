@@ -45,6 +45,10 @@ Note that you may not wish to run all the rules in the snakefile. For example, y
  snakemake -np results/{subject}_{hemi}/NODDI
 ```
 
+To visualize the workflow you can use the following command to get a directed acyclic graph (DAG) pdf of jobs where the edges represent dependencies:
+```python
+ snakemake --dag | dot -Tpdf > dag.pdf
+ ```
 
 #### 4. **Executing on Graham (compute canada)**
 The workflow can be executed by using the `cc-slurm` profile or by executing an interactive job. 
