@@ -1,0 +1,65 @@
+from os.path import join
+from glob import glob
+import pandas as pd
+
+configfile: 'config.yml'
+
+hemis = config['hemis']
+rois = config['rois']
+
+container: config['container']
+
+model = 'NODDI'
+
+#load participants.tsv file, and strip off sub- from participant_id column
+df = pd.read_table(config['participants_tsv'])
+subjects = df.participant_id.to_list()
+subjects = [ s.strip('sub-') for s in subjects ]
+
+rule all:
+    input:
+        final = expand('results/{subject}_{hemi}/{subject}_{roi}_{hemi}_{model}', subject=subjects, roi=rois, hemi=hemis, model=model)
+
+rule create_protocol:
+    input:
+        bvec = join(config['in_dir'],config['bvec']),
+        bval = join(config['in_dir'],config['bval'])
+    output:
+        protocol = 'results/{subject}_{hemi}/{subject}_{roi}_{hemi}.prtcl'
+    shell: 'mdt-create-protocol -o {output} {input.bvec} {input.bval}'
+ input:
+        bvec = join(config['in_dir'],config['bvec']),
+        bval = join(config['in_dir'],config['bval'])
+    output:
+        protocol = 'results/{subject}_{hemi}/{subject}_{roi}_{hemi}.prtcl'
+    shell: 'mdt-create-protocol -o {output} {input.bvec} {input.bval}'
+
+
+
+rule create_mask: #this will create a rough whole brain mask and is not as sophisticated as for example BET from FSL
+    input:
+        data = join(config['in_dir'],config['dwi']),
+        protocol = 'results/{subject}_{hemi}/{subject}_{roi}_{hemi}.prtcl'
+    output:
+        mdtgen_mask = 'results/{subject}_{hemi}/{subject}_{roi}_{hemi}_mdtgen_brain_mask.nii.gz'
+    shell: 'mdt-create-mask -o {output} {input.data} {input.protocol}'
+
+
+
+rule create_roi_slice: #Might want to run analysis on single slice. This rule will create a ROI mask which can be further fitted with a model
+    input:
+        brainmask = join(config['in_dir'],config['brain_mask'])
+    output:
+        roi_mask = 'results/{subject}_{hemi}/{subject}_{roi}_{hemi}_roi_mask.nii.gz'
+    shell: 'mdt-create-roi-slice -o {output} -d 2 -s 30 {input.brainmask}' #generate a mask in dimension (d) 2 on index (s) 30 (0-based)
+
+
+
+rule fit_model:
+    input:
+        data = join(config['in_dir'],config['dwi']),
+        protocol = 'results/{subject}_{hemi}/{subject}_{roi}_{hemi}.prtcl',
+        brainmask = join(config['in_dir'],config['brain_mask'])
+    output:
+        final = directory('results/{subject}_{hemi}/{subject}_{roi}_{hemi}_{model}') #Make sure when you type this in command-line to only run this rule that /{model} matches the model specified at the top so it creates a properly named directory
+    shell: 'mdt-model-fit -o {output} {model} {input.data} {input.protocol} {input.brainmask}'
