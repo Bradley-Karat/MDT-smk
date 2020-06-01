@@ -40,11 +40,6 @@ Test your configuration by performing a dry-run via
  snakemake -np
 ```
 
-Note that you may not wish to run all the rules in the snakefile. For example, you may already have a mask created and do not wish to create another one through MDT. In that case, specify the rule you would like to run. An example for only running the model fitting is:
-```python
- snakemake -np results/{subject}_{hemi}/NODDI
-```
-
 To visualize the workflow you can use the following command to get a directed acyclic graph (DAG) pdf of jobs where the edges represent dependencies:
 ```python
  snakemake --dag | dot -Tpdf > dag.pdf
