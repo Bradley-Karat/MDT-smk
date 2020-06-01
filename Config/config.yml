@@ -12,8 +12,11 @@ dwi: 'sub-{subject}_{hemi}/dwi/multishell/data.nii.gz'
 grad_dev: 'sub-{subject}_{hemi}/dwi/multishell/grad_dev.nii.gz'
 brain_mask: 'sub-{subject}_{hemi}/dwi/multishell/nodif_brain_mask.nii.gz'
 
+#Region of interest
 rois:
 - hippo
+
+#Data seperated as left and right hemisphere
 hemis:
 - L
 - R
