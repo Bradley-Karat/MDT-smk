@@ -1,0 +1,19 @@
+in_dir: '/scratch/bkarat/05-2020/unfolded-hippo'
+
+container: '/project/6050199/akhanf/singularity/bids-apps/khanlab_mdt-bids_v0.1.sif'
+
+participants_tsv: participants.tsv
+
+
+#paths to inputs, relative to in_dir
+bvec: 'sub-{subject}_{hemi}/dwi/multishell/bvecs'
+bval: 'sub-{subject}_{hemi}/dwi/multishell/bvals'
+dwi: 'sub-{subject}_{hemi}/dwi/multishell/data.nii.gz'
+grad_dev: 'sub-{subject}_{hemi}/dwi/multishell/grad_dev.nii.gz'
+brain_mask: 'sub-{subject}_{hemi}/dwi/multishell/nodif_brain_mask.nii.gz'
+
+rois:
+- hippo
+hemis:
+- L
+- R
