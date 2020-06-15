@@ -27,16 +27,10 @@ rule create_protocol:
     output:
         protocol = 'results/{subject}_{hemi}/{subject}_{roi}_{hemi}.prtcl'
     shell: 'mdt-create-protocol -o {output} {input.bvec} {input.bval}'
- input:
-        bvec = join(config['in_dir'],config['bvec']),
-        bval = join(config['in_dir'],config['bval'])
-    output:
-        protocol = 'results/{subject}_{hemi}/{subject}_{roi}_{hemi}.prtcl'
-    shell: 'mdt-create-protocol -o {output} {input.bvec} {input.bval}'
 
 
 
-rule create_mask: #this will create a rough whole brain mask and is not as sophisticated as for example BET from FSL
+rule create_mask: #this will create a rough whole brain mask, however, it is not as sophisticated as for example BET from FSL
     input:
         data = join(config['in_dir'],config['dwi']),
         protocol = 'results/{subject}_{hemi}/{subject}_{roi}_{hemi}.prtcl'
