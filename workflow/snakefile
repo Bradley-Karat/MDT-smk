@@ -20,7 +20,7 @@ rule all:
     input:
         final = expand('results/{subject}_{hemi}/{subject}_{roi}_{hemi}_{model}', subject=subjects, roi=rois, hemi=hemis, model=model)
 
-rule create_protocol: #If you have delta, TR, and TE specify it here using: --Delta [], --delta [], --TE [], --TR [] at the shell stage
+rule create_protocol: #If you have delta, TR, and TE specify it here using: --Delta [], --delta [], --TE [], --TR [] at the shell command below
     input:
         bvec = join(config['in_dir'],config['bvec']),
         bval = join(config['in_dir'],config['bval'])
