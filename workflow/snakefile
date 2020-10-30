@@ -56,5 +56,5 @@ rule fit_model:
         brainmask = join(config['in_dir'],config['brain_mask']),
         gradientdeviations = join(config['in_dir'],config['grad_dev'])
     output:
-        final = directory('results/{subject}_{hemi}/{subject}_{roi}_{hemi}_{model}') #Make sure when you type this in command-line to only run this rule that /{model} matches the model specified at the top so it creates a properly named directory
+        final = directory('results/{subject}_{hemi}/{roi}_{model}') #Make sure when you type this in command-line to only run this rule that /{model} matches the model specified at the top so it creates a properly named directory
     shell: 'mdt-model-fit -o {output} {model} {input.data} {input.protocol} {input.brainmask} --gradient-deviations {input.gradientdeviations}'
