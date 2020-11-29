@@ -4,8 +4,6 @@ import pandas as pd
 
 configfile: 'config.yml'
 
-hemis = config['hemis']
-rois = config['rois']
 
 container: config['container']
 
@@ -18,14 +16,14 @@ subjects = [ s.strip('sub-') for s in subjects ]
 
 rule all:
     input:
-        final = expand('results/{subject}_{hemi}/{subject}_{roi}_{hemi}_{model}', subject=subjects, roi=rois, hemi=hemis, model=model)
+        final = expand('results/{subject}/{model}', subject=subjects, model=model)
 
 rule create_protocol: #If you have delta, TR, and TE specify it here using: --Delta [], --delta [], --TE [], --TR [] at the shell command below
     input:
         bvec = join(config['in_dir'],config['bvec']),
         bval = join(config['in_dir'],config['bval'])
     output:
-        protocol = 'results/{subject}_{hemi}/{subject}_{roi}_{hemi}.prtcl'
+        protocol = 'results/{subject}/{subject}.prtcl'
     shell: 'mdt-create-protocol -o {output} {input.bvec} {input.bval}'
 
 
@@ -33,9 +31,9 @@ rule create_protocol: #If you have delta, TR, and TE specify it here using: --De
 rule create_mask: #this will create a rough whole brain mask, however, it is not as sophisticated as for example BET from FSL
     input:
         data = join(config['in_dir'],config['dwi']),
-        protocol = 'results/{subject}_{hemi}/{subject}_{roi}_{hemi}.prtcl'
+        protocol = 'results/{subject}/{subject}.prtcl'
     output:
-        mdtgen_mask = 'results/{subject}_{hemi}/{subject}_{roi}_{hemi}_mdtgen_brain_mask.nii.gz'
+        mdtgen_mask = 'results/{subject}/{subject}_mdtgen_brain_mask.nii.gz'
     shell: 'mdt-create-mask -o {output} {input.data} {input.protocol}'
 
 
@@ -44,7 +42,7 @@ rule create_roi_slice: #Might want to run analysis on single slice. This rule wi
     input:
         brainmask = join(config['in_dir'],config['brain_mask'])
     output:
-        roi_mask = 'results/{subject}_{hemi}/{subject}_{roi}_{hemi}_roi_mask.nii.gz'
+        roi_mask = 'results/{subject}/{subject}_roi_mask.nii.gz'
     shell: 'mdt-create-roi-slice -o {output} -d 2 -s 30 {input.brainmask}' #generate a mask in dimension (d) 2 on index (s) 30 (0-based)
 
 
@@ -52,9 +50,9 @@ rule create_roi_slice: #Might want to run analysis on single slice. This rule wi
 rule fit_model:
     input:
         data = join(config['in_dir'],config['dwi']),
-        protocol = 'results/{subject}_{hemi}/{subject}_{roi}_{hemi}.prtcl',
+        protocol = 'results/{subject}/{subject}.prtcl',
         brainmask = join(config['in_dir'],config['brain_mask']),
         gradientdeviations = join(config['in_dir'],config['grad_dev'])
     output:
-        final = directory('results/{subject}_{hemi}/{roi}_{model}') #Make sure when you type this in command-line to only run this rule that /{model} matches the model specified at the top so it creates a properly named directory
+        final = directory('results/{subject}/{model}') #Make sure when you type this in command-line to only run this rule that /{model} matches the model specified at the top so it creates a properly named directory
     shell: 'mdt-model-fit -o {output} {model} {input.data} {input.protocol} {input.brainmask} --gradient-deviations {input.gradientdeviations}'
