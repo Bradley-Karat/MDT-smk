@@ -1,5 +1,5 @@
 # Snakemake workflow for using the Microstructure Diffusion Toolbox (MDT)
-This is a snakemake workflow for using the [Microstructure Diffusion Toolbox (MDT)](https://mdt-toolbox.readthedocs.io/en/latest_release/index.html). This workflow was designed to run microstructure modelling on left and right hemisphere unfolded hippocampal diffusion data (more about unfolding the hippocampus by @jordandekraker at https://github.com/jordandekraker/HippUnfolding). This workflow makes use of a [bids app wrapper](https://github.com/khanlab/mdt-bids) for running MDT.
+This is a snakemake workflow for using the [Microstructure Diffusion Toolbox (MDT)](https://mdt-toolbox.readthedocs.io/en/latest_release/index.html). This workflow is currently designed to run on HCP 1200 data (Van Essen et al., 2013). This workflow makes use of a [bids app wrapper](https://github.com/khanlab/mdt-bids) for running MDT.
 
 ## Authors
 * Bradley Karat (@Bradley-Karat)
@@ -31,7 +31,7 @@ For more details about installation [read the snakemake documentation](https://s
 
 
 #### 2. **Configuring the Workflow**
-Configure the workflow for your specific needs by adjusting the `config.yml` and `participants.tsv` files in the `Config` folder. Please note that at the top of the `snakefile` there is a variable called `model`. Replace the value for `model` with the microstructure model you wish to use. In our example we used the Neurite Orientation Density and Dispersion Imaging model (NODDI).
+Configure the workflow for your specific needs by adjusting the `config.yml` and `participants.tsv` files in the `Config` folder. Please note that at the top of the `snakefile` there is a variable called `model`. Replace the value for `model` with the microstructure model you wish to use. In our current set-up we used the Neurite Orientation Density and Dispersion Imaging model (NODDI).
 
 
 #### 3. **Testing with a Dry-run**
