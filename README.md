@@ -31,7 +31,7 @@ For more details about installation [read the snakemake documentation](https://s
 
 
 #### 2. **Configuring the Workflow**
-Configure the workflow for your specific needs by adjusting the `config.yml` and `participants.tsv` files in the `Config` folder. Please note that at the top of the `snakefile` there is a variable called `model`. Replace the value for `model` with the microstructure model you wish to use. In our current set-up we used the Neurite Orientation Density and Dispersion Imaging model (NODDI).
+Configure the workflow for your specific needs by adjusting the `config.yml` and `participants.tsv` files in the `Config` folder. Please note that at the top of the `snakefile` there is a variable called `model`. Replace the value for `model` with the microstructure model you wish to use. In our current set-up we used the Neurite Orientation Dispersion and Density Imaging model (NODDI).
 
 
 #### 3. **Testing with a Dry-run**
